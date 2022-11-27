@@ -1,0 +1,146 @@
+{
+    "$schema": "https://raw.githubusercontent.com/JanDeDobbeleer/oh-my-posh/main/themes/schema.json",
+    "blocks": [
+      {
+        "type": "prompt",
+        "alignment": "right",
+        "segments": [
+          {
+            "type": "shell",
+            "style": "plain",
+            "foreground": "#007acc",
+            "template": "{{ .Name }}"
+          },
+          {
+            "type": "java",
+            "style": "plain",
+            "foreground": "#4f84a3",
+            "template": " <#757575>|</> <#f1941b>\ue26a</>  {{ .Full }}"
+          },
+          {
+            "type": "kotlin",
+            "style": "plain",
+            "foreground": "#7f52ff",
+            "template": " <#757575>|</> <#a035f1>\ue634</>  {{ .Full }}"
+          },
+          {
+            "type": "python",
+            "style": "plain",
+            "foreground": "#ffd342",
+            "template": " <#757575>|</> \ue235  <#3871a0>{{ .Full }}</>{{ if .Venv }} <#757575>|</> {{ .Venv }}{{ end }}"
+          },
+          {
+            "type": "cmake",
+            "style": "plain",
+            "foreground": "white",
+            "template": "{{ if .Full }} <#757575>|</> <#a035f1>\ufa36</> {{ .Full }}{{ end }}"
+          },
+          {
+            "type": "dotnet",
+            "style": "plain",
+            "foreground": "#744f9e",
+            "template": " <#757575>|</> <#1384c8>\ue77f</>  {{ .Full }}"
+          },
+          {
+            "type": "node",
+            "style": "plain",
+            "foreground": "#6bc045",
+            "template": " <#757575>|</> <#3c873a>\uf898</> {{ .Full }}",
+            "properties": {
+              "fetch_package_manager": true
+            }
+          },
+          {
+            "type": "time",
+            "style": "plain",
+            "foreground": "white",
+            "template": " <#757575>|</> {{ .CurrentDate | date .Format }}",
+            "properties": {
+              "time_format": "15:04:05"
+            }
+          }
+        ]
+      },
+      {
+        "type": "prompt",
+        "alignment": "left",
+        "newline": true,
+        "segments": [
+          {
+            "type": "session",
+            "style": "plain",
+            "foreground": "#45F1C2",
+            "template": "<darkGray>\u250c</> @{{ .UserName }} "
+          },
+          {
+            "type": "path",
+            "style": "plain",
+            "foreground": "#15C2CB",
+            "template": "<darkGray>in</> {{ path .Path .Location }} ",
+            "properties": {
+              "style": "folder"
+            }
+          },
+          {
+            "type": "git",
+            "style": "plain",
+            "foreground": "#ff94df",
+            "template": "<darkGray>on</> {{ .HEAD }}{{ if .Working.Changed }} {{ .Working.String }}{{ end }}{{ if and (.Working.Changed) (.Staging.Changed) }} |{{ end }}{{ if .Staging.Changed }} \uf046 {{ .Staging.String }}{{ end }}{{ if gt .StashCount 0 }} \uf692 {{ .StashCount }}{{ end }} ",
+            "properties": {
+              "branch_icon": "",
+              "fetch_stash_count": true,
+              "fetch_status": true,
+              "fetch_upstream_icon": true,
+              "fetch_worktree_count": true
+            }
+          }
+        ]
+      },
+      {
+        "type": "prompt",
+        "alignment": "right",
+        "segments": [
+          {
+            "type": "executiontime",
+            "style": "powerline",
+            "foreground": "#a9ffb4",
+            "template": " {{ .FormattedMs }}s",
+            "properties": {
+              "threshold": 0,
+              "style": "dallas"
+            }
+          }
+        ]
+      },
+      {
+        "type": "prompt",
+        "alignment": "left",
+        "newline": true,
+        "segments": [
+          {
+            "type": "text",
+            "style": "plain",
+            "foreground": "#757575",
+            "template": "\u2514 "
+          },
+          {
+            "type": "exit",
+            "style": "plain",
+            "foreground": "#ffffff",
+            "foreground_templates": ["{{ if gt .Code 0 }}#e91e63{{ end }}"],
+            "template": "$ ",
+            "properties": {
+              "always_enabled": true
+            }
+          }
+        ]
+      }
+    ],
+    "console_title_template": "{{ .Folder }}",
+    "transient_prompt": {
+      "background": "transparent",
+      "foreground": "#FEF5ED",
+      "template": "\ue285 "
+    },
+    "version": 2
+  }

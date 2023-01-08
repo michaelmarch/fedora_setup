@@ -1,0 +1,10 @@
+[Unit]
+Description=Fix VoiceError 17 in wow
+Requires=firewalld.service nftables.service
+After=firewalld.service 
+Before=nftables.service
+[Service]
+Type=oneshot
+ExecStart=/usr/local/sbin/wowfix.sh
+[Install]
+WantedBy=basic.target

@@ -19,4 +19,3 @@ eval "$(starship init $SHELL)"
 alias ls='lsd -Fl'
 alias ll='ls -A'
 alias grep='grep --color'
-

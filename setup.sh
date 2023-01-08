@@ -48,9 +48,9 @@ start_section "Add thirdparty repos and run updates (again)" \
 
 # TODO: replace neofetch with fastfetch ???
 start_section "Install software" \
+    "sudo dnf install -y https://extras.getpagespeed.com/release-latest.rpm" \
     "sudo dnf install -y \
         $packages \
-        https://extras.getpagespeed.com/release-latest.rpm \
         blender \
         brave-browser \
         code \
@@ -89,13 +89,12 @@ start_section "Install software" \
         util-linux-user \
         vkBasalt \
         vlc \
-        wine \
         winetricks \
         yt-dlp \
         zsh" \
     "flatpak install flathub com.mattjakeman.ExtensionManager -y" \
     "download_latest_rpm https://github.com/TheAssassin/AppImageLauncher/ appimage-launcher.rpm 64.rpm" \
-    "mkdir -p $HOME/Applications/ && download_latest https://github.com/streamlink/streamlink-twitch-gui/ $HOME/Applications/TwitchGui.AppImage AppImage" \
+    "mkdir -p $HOME/Applications/ && download_latest https://github.com/streamlink/streamlink-twitch-gui/ $HOME/Applications/TwitchGui.AppImage 64.AppImage" \
     "download_latest_rpm https://github.com/SpacingBat3/WebCord/ webcord.rpm x86_64.rpm" \
     "download_latest_rpm https://github.com/ferdium/ferdium-app/ ferdium.rpm rpm" \
     "download_latest_rpm https://github.com/Kong/insomnia/ insomnia.rpm rpm" \
@@ -119,7 +118,8 @@ start_section "Apply wow fix for VoiceError: 17" \
         sudo systemctl enable wowfix.service"
 
 start_section "Install font(s)" \
-    "download_latest https://github.com/ryanoasis/nerd-fonts/ $HOME/Applications/FiraCode.zip FiraCode.zip" \
+    "mkdir -p $HOME/.fonts/firacode/firacode.zip" \
+    "download_latest https://github.com/ryanoasis/nerd-fonts/ $HOME/.fonts/firacode/firacode.zip FiraCode.zip" \
     "unzip -q $HOME/.fonts/firacode/firacode.zip -d $HOME/.fonts/firacode/ && \
         find $HOME/.fonts/firacode/ -type f ! \( -name '*Complete.ttf' -o -name '*Mono.ttf' \) -delete && \
         fc-cache -f -v"
@@ -130,10 +130,10 @@ start_section "Install Gnome extensions" \
 
 start_section "Misc configuration" \
     "sudo sensors-detect --auto" \
-    "cp $HOME/configs/disable-usb-wake.conf /etc/tmpfiles.d/"
+    "sudo cp configs/disable-usb-wake.conf /etc/tmpfiles.d/"
 
 start_section "Shell configuration" \
-    "cp scripts/.zshrc $HOME/.zshrc" \
+    "cp configs/.zshrc $HOME/.zshrc" \
     "mkdir -p $HOME/.config/starship/ && \
         cp configs/starship.toml $HOME/.config/starship/ &&  \
         curl -sS https://starship.rs/install.sh | sh -s -- -y"
@@ -142,7 +142,8 @@ start_section "Platform specific configuration"
 setup
 
 start_section "Prepare stage 2 setup" \
-    "cp scripts/continue_setup.sh $HOME/.local/bin/ && \
+    "mkdir -p $HOME/.local/bin && \
+        cp scripts/continue_setup.sh $HOME/.local/bin/ && \
         chmod +x $HOME/.local/bin/continue_setup.sh && \
         cp /usr/share/applications/org.gnome.Terminal.desktop ~/.config/autostart && \
         sed -i \"s+^Exec=gnome-terminal+Exec=/usr/bin/gnome-terminal -v -- /bin/bash -c '$HOME/.local/bin/continue_setup.sh;exec $SHELL'+\" ~/.config/autostart/org.gnome.Terminal.desktop"

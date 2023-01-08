@@ -59,5 +59,5 @@ download_latest_rpm() {
     out=$2
     filter=$3
 
-    execute "lastversion --assets --filter $filter download $repo --output $out && sudo rpm -i $out && rm $out"
+    execute "lastversion --assets --filter $filter download $repo --output $out && sudo rpm -i $out --force && rm $out"
 }

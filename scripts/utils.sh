@@ -18,6 +18,7 @@ assert_file() {
 }
 
 start_section() {
+    section=$1
     print_s "**** Start: $section ****"
     shift
     for cmd in "$@"; do

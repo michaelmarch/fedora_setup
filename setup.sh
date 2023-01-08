@@ -70,6 +70,7 @@ start_section "Install software" \
         kdenlive \
         keepassxc \
         krita \
+        lastversion \
         lm_sensors \
         lsd \
         lutris \
@@ -138,14 +139,14 @@ start_section "Install Gnome extensions" \
 
 start_section "Misc configuration" \
     "sudo sensors-detect --auto" \
-    "cp $HOME/usb/fedora-setup/configs/disable-usb-wake.conf /etc/tmpfiles.d/"
+    "cp $HOME/configs/disable-usb-wake.conf /etc/tmpfiles.d/"
 
 start_section "Shell configuration" \
-    "cp .zshrc $HOME/.zshrc" \
+    "cp scripts/.zshrc $HOME/.zshrc" \
     "dconf write \"/org/gnome/terminal/legacy/profiles:/:b1dcc9dd-5262-4d8d-a863-c897e6d979b9/use-custom-command\" \"true\"" \
     "dconf write \"/org/gnome/terminal/legacy/profiles:/:b1dcc9dd-5262-4d8d-a863-c897e6d979b9/custom-command\" \"'/bin/zsh'\"" \
     "mkdir -p $HOME/.config/starship/ && \
-        cp configs/starship.toml $HOME/.config/starship/ \
+        cp configs/starship.toml $HOME/.config/starship/ &&  \
         curl -sS https://starship.rs/install.sh | sh -s -- -y"
 
 start_section "Platform specific configuration"

@@ -118,7 +118,7 @@ start_section "Apply wow fix for VoiceError: 17" \
         sudo systemctl enable wowfix.service"
 
 start_section "Install font(s)" \
-    "mkdir -p $HOME/.fonts/firacode/firacode.zip" \
+    "mkdir -p $HOME/.fonts/firacode/" \
     "download_latest https://github.com/ryanoasis/nerd-fonts/ $HOME/.fonts/firacode/firacode.zip FiraCode.zip" \
     "unzip -q $HOME/.fonts/firacode/firacode.zip -d $HOME/.fonts/firacode/ && \
         find $HOME/.fonts/firacode/ -type f ! \( -name '*Complete.ttf' -o -name '*Mono.ttf' \) -delete && \
@@ -131,6 +131,7 @@ start_section "Install Gnome extensions" \
 start_section "Misc configuration" \
     "sudo sensors-detect --auto" \
     "sudo cp configs/disable-usb-wake.conf /etc/tmpfiles.d/"
+    "cp wallpaper.jpg $HOME/.config/"
 
 start_section "Shell configuration" \
     "cp configs/.zshrc $HOME/.zshrc" \
@@ -145,7 +146,8 @@ start_section "Prepare stage 2 setup" \
     "mkdir -p $HOME/.local/bin && \
         cp scripts/continue_setup.sh $HOME/.local/bin/ && \
         chmod +x $HOME/.local/bin/continue_setup.sh && \
-        cp /usr/share/applications/org.gnome.Terminal.desktop ~/.config/autostart && \
+        mkdir -p $HOME/.config/autostart/ && \
+        cp /usr/share/applications/org.gnome.Terminal.desktop ~/.config/autostart/ && \
         sed -i \"s+^Exec=gnome-terminal+Exec=/usr/bin/gnome-terminal -v -- /bin/bash -c '$HOME/.local/bin/continue_setup.sh;exec $SHELL'+\" ~/.config/autostart/org.gnome.Terminal.desktop"
 
 if [[ "$error" = false ]]; then

@@ -1,147 +1,230 @@
-## FIRST LINE/ROW: Info & Status
-# First param ─┌
-[username]
-format = " [╭─$user]($style)@"
-show_always = true
-style_root = "bold red"
-style_user = "bold red"
+"$schema" = 'https://starship.rs/config-schema.json'
 
-# Second param
-[hostname]
-disabled = false
-format = "[$hostname]($style) in "
-ssh_only = false
-style = "bold dimmed red"
-trim_at = "-"
 
-# Third param
-[directory]
-style = "purple"
-truncate_to_repo = true
-truncation_length = 0
-truncation_symbol = "repo: "
+format = """
+[┌](#757575) $username$directory$git_branch$git_status$fill$cmd_duration$shell$c$dotnet$java$kotlin$nodejs$python$cmake$docker_context$package
+[└](#757575) $character"""
 
-# Fourth param
-[sudo]
-disabled = false
 
-# Before all the version info (python, nodejs, php, etc.)
-[git_status]
-ahead = "⇡${count}"
-behind = "⇣${count}"
-deleted = "x"
-diverged = "⇕⇡${ahead_count}⇣${behind_count}"
-style = "white"
+[c]
+format = " [|](#757575) [$symbol($version(-$name))]($style)"
+style = "#659bd3"
+symbol = "[C](#659bd3 bold) "
 
-# Last param in the first line/row
+[cmake]
+format = " [|](#757575) [$symbol($version )]($style)"
+symbol = "喝"
+
 [cmd_duration]
-disabled = false
-format = "took [$duration]($style)"
-min_time = 1
-
-
-## SECOND LINE/ROW: Prompt
-# Somethere at the beginning
-[battery]
-charging_symbol = ""
-disabled = true
-discharging_symbol = ""
-full_symbol = ""
-
-[[battery.display]]  # "bold red" style when capacity is between 0% and 10%
-disabled = false
-style = "bold red"
-threshold = 15
-
-[[battery.display]]  # "bold yellow" style when capacity is between 10% and 30%
-disabled = true
-style = "bold yellow"
-threshold = 50
-
-[[battery.display]]  # "bold green" style when capacity is between 10% and 30%
-disabled = true
-style = "bold green"
-threshold = 80
-
-# Prompt: optional param 1
-[time]
-disabled = true
-format = " 🕙 $time($style)\n"
-style = "bright-white"
-time_format = "%T"
-
-# Prompt: param 2
-[character]
-error_symbol = " [×](bold red)"
-success_symbol = " [╰─λ](bold red)"
-
-# SYMBOLS
-[status]
-disabled = false
-format = '[\[$symbol$status_common_meaning$status_signal_name$status_maybe_int\]]($style)'
-map_symbol = true
-pipestatus = true
-symbol = "🔴"
-
-[aws]
-symbol = " "
-
-[conda]
-symbol = " "
-
-[dart]
-symbol = " "
+min_time = 0
+show_milliseconds = true
+format = "[$duration]($style) [|](#757575) "
 
 [docker_context]
-symbol = " "
+format = " [|](#757575) [$symbol$context]($style)"
+symbol = ""
+style = "bold #029ac4"
 
-[elixir]
-symbol = " "
-
-[elm]
-symbol = " "
+[dotnet]
+format = " [|](#757575) [$symbol($version )($tfm)]($style)"
+symbol = " "
+style = "bold #512bd4"
 
 [git_branch]
-symbol = " "
+format = "[on](#757575) [$symbol$branch]($style)"
+style = "#ff94df"
 
-[golang]
-symbol = " "
-
-[hg_branch]
-symbol = " "
+[git_status]
+format = "[$untracked$modified$deleted$ahead_behind]($style)"
+untracked = " $count?"
+modified = " $count!"
+deleted = " $count✘"
+style = "#ff94df"
 
 [java]
-symbol = " "
+format = " [|](#757575) [$symbol($version)]($style)"
+style = "#4f84a3"
+symbol = " "
 
-[julia]
-symbol = " "
-
-[nim]
-symbol = " "
-
-[nix_shell]
-symbol = " "
+[kotlin]
+format = " [|](#757575) [$symbol($version)]($style)"
+style = "#7f52ff"
+symbol = " "
 
 [nodejs]
-symbol = " "
+format = " [|](#757575) [$symbol($version)]($style)"
+style = "green"
 
 [package]
+format = " [|](#757575) [$symbol($version)]($style)"
 symbol = " "
-
-[perl]
-symbol = " "
-
-[php]
-symbol = " "
+display_private = true
+style = "208"
 
 [python]
-symbol = " "
-
-[ruby]
-symbol = " "
+format = " [|](#757575) [${symbol}${pyenv_prefix}(${version} )(\\($virtualenv\\) )]($style)"
+symbol = " "
+style = "#3871a0"
 
 [rust]
+format = " [|](#757575) $symbol($version)]($style)"
 symbol = " "
 
+[username]
+style_user = "#45f1c2"
+style_root = "black_red bold"
+format = "[@$user]($style)"
+show_always = true
+
+[directory]
+style = "#15c2cb"
+format = " [in](#757575) [$path]($style) [$read_only]($read_only_style)"
+read_only = ""
+read_only_style = "#df5050"
+
+[shell]
+format = "[$indicator]($style)"
+disabled = false
+
+[fill]
+symbol = " "
+
+[character]
+format = "$symbol "
+success_symbol = "[\\$](#ffffff)"
+error_symbol = "[\\$](#df5000)"
+
+[aws]
+disabled = true
+
+[battery]
+disabled = true
+
+[buf]
+disabled = true
+
+[bun]
+disabled = true
+
+[cobol]
+disabled = true
+
+[conda]
+disabled = true
+
+[container]
+disabled = true
+
+[crystal]
+disabled = true
+
+[daml]
+disabled = true
+
+[dart]
+disabled = true
+
+[deno]
+disabled = true
+
+[elixir]
+disabled = true
+
+[elm]
+disabled = true
+
+[erlang]
+disabled = true
+
+[gcloud]
+disabled = true
+
+[git_commit]
+disabled = true
+
+[git_state]
+disabled = true
+
+[golang]
+disabled = true
+
+[haskell]
+disabled = true
+
+[helm]
+disabled = true
+
+[hostname]
+disabled = true
+
+[jobs]
+disabled = true
+
+[julia]
+disabled = true
+
+[lua]
+disabled = true
+
+[meson]
+disabled = true
+
+[nim]
+disabled = true
+
+[nix_shell]
+disabled = true
+
+[ocaml]
+disabled = true
+
+[openstack]
+disabled = true
+
+[perl]
+disabled = true
+
+[php]
+disabled = true
+
+[pulumi]
+disabled = true
+
+[purescript]
+disabled = true
+
+[rlang]
+disabled = true
+
+[raku]
+disabled = true
+
+[red]
+disabled = true
+
+[ruby]
+disabled = true
+
+[scala]
+disabled = true
+
+[singularity]
+disabled = true
+
+[spack]
+disabled = true
+
 [swift]
-symbol = "ﯣ "
+disabled = true
+
+[vagrant]
+disabled = true
+
+[vlang]
+disabled = true
+
+[vcsh]
+disabled = true
+
+[zig]
+disabled = true

@@ -7,7 +7,6 @@ if [[ $EUID -eq 0 ]]; then
     exit $ERROR_ROOT_USER_DETECTED
 fi
 
-exit -1
 
 GPU=$(lspci -nnk | grep -Ei "3d|vga")
 if echo "$GPU" | grep -Eqi "amd|ati"; then

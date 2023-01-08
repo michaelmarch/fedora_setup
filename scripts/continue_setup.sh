@@ -37,6 +37,19 @@ dconf write /org/gnome/shell/extensions/just-perfection/activities-button "false
 dconf write /org/gnome/shell/extensions/just-perfection/background-menu "false"
 dconf write /org/gnome/shell/extensions/just-perfection/show-apps-button "false"
 dconf write /org/gnome/shell/extensions/just-perfection/startup-status "0"
+dconf write "/org/gnome/terminal/legacy/profiles:/:b1dcc9dd-5262-4d8d-a863-c897e6d979b9/use-custom-command" "true"
+dconf write "/org/gnome/terminal/legacy/profiles:/:b1dcc9dd-5262-4d8d-a863-c897e6d979b9/custom-command" "'/bin/zsh'"
+
+
+gsettings set org.gnome.desktop.interface.clock-show-weekday true
+gsettings set org.gnome.desktop.interface.clock-show-seconds true
+gsettings set org.gnome.desktop.session.idle-delay 0
+gsettings set org.gnome.desktop.peripherals.mouse.speed -0.47
+gsettings set org.gnome.desktop.media-handling.autorun-x-content-open-folder []
+gsettings set org.gnome.desktop.media-handling.autorun-x-content-ignore []
+cp wallpaper.jpg $HOME/.config/
+gsettings set org.gnome.desktop.background picture-uri file://$HOME/.config/wallpaper.jpg
+gsettings set org.gnome.desktop.background picture-uri-dark file://$HOME/.config/wallpaper.jpg
 
 rm $HOME/.config/autostart/org.gnome.Terminal.desktop
 rm $HOME/.local/bin/continue_setup.sh

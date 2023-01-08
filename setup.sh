@@ -118,16 +118,7 @@ start_section "Apply wow fix for VoiceError: 17" \
         sudo cp scripts/wowfix.sh /usr/local/sbin/ && \
         sudo systemctl enable wowfix.service"
 
-start_section "Configure Gnome's look" \
-    "gsettings set org.gnome.desktop.interface.clock-show-weekday true" \
-    "gsettings set org.gnome.desktop.interface.clock-show-seconds true" \
-    "gsettings set org.gnome.desktop.session.idle-delay 0" \
-    "gsettings set org.gnome.desktop.peripherals.mouse.speed -0.47" \
-    "gsettings set org.gnome.desktop.media-handling.autorun-x-content-open-folder []" \
-    "gsettings set org.gnome.desktop.media-handling.autorun-x-content-ignore []" \
-    "cp wallpaper.jpg $HOME/.config/" \
-    "gsettings set org.gnome.desktop.background picture-uri file://$HOME/.config/wallpaper.jpg" \
-    "gsettings set org.gnome.desktop.background picture-uri-dark file://$HOME/.config/wallpaper.jpg" \
+start_section "Install font(s)" \
     "download_latest https://github.com/ryanoasis/nerd-fonts/ $HOME/Applications/FiraCode.zip FiraCode.zip" \
     "unzip -q $HOME/.fonts/firacode/firacode.zip -d $HOME/.fonts/firacode/ && \
         find $HOME/.fonts/firacode/ -type f ! \( -name '*Complete.ttf' -o -name '*Mono.ttf' \) -delete && \
@@ -143,8 +134,6 @@ start_section "Misc configuration" \
 
 start_section "Shell configuration" \
     "cp scripts/.zshrc $HOME/.zshrc" \
-    "dconf write \"/org/gnome/terminal/legacy/profiles:/:b1dcc9dd-5262-4d8d-a863-c897e6d979b9/use-custom-command\" \"true\"" \
-    "dconf write \"/org/gnome/terminal/legacy/profiles:/:b1dcc9dd-5262-4d8d-a863-c897e6d979b9/custom-command\" \"'/bin/zsh'\"" \
     "mkdir -p $HOME/.config/starship/ && \
         cp configs/starship.toml $HOME/.config/starship/ &&  \
         curl -sS https://starship.rs/install.sh | sh -s -- -y"
